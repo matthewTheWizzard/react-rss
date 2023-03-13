@@ -1,11 +1,32 @@
+import Header from './components/Header';
 import React from 'react';
+import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <div>
-      <h1>How about we start start this!</h1>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/about" element={<About />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
+    </>
   );
 }
 
-export default App;
+function WrappedApp() {
+  return (
+    <>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </>
+  );
+}
+
+export default WrappedApp;
